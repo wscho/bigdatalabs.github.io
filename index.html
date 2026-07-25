@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>(주)빅데이터랩스 | BigData Labs</title>
+<link rel="icon" href="logo3.png" type="image/png">
+<meta name="description" content="충북대학교 교원벤처 (주)빅데이터랩스 - 빅데이터 수집, 저장관리, AI분석 전주기 솔루션 IDAP/ADAP">
+<style>
+:root{
+  --navy:#0a2540;
+  --blue:#0b63ce;
+  --blue-light:#3d8bff;
+  --blue-pale:#eaf2ff;
+  --ink:#111827;
+  --sub:#5b6472;
+  --line:#e6e9ef;
+  --bg:#ffffff;
+  --bg-soft:#f6f8fb;
+  --accent:#00c2a8;
+  --radius:14px;
+  --shadow:0 8px 30px rgba(10,37,64,0.08);
+  --shadow-lg:0 20px 60px rgba(10,37,64,0.14);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Pretendard","Noto Sans KR","Malgun Gothic",-apple-system,BlinkMacSystemFont,sans-serif;
+  color:var(--ink);
+  background:var(--bg);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+.container{max-width:1180px;margin:0 auto;padding:0 24px}
+section{padding:64px 0;border-top:none;position:relative}
+section#home{border-top:none}
+.section-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:800;letter-spacing:.08em;
+  color:#fff;text-transform:uppercase;
+  margin-bottom:16px;
+  padding:8px 18px 8px 14px;border-radius:999px;
+  background:var(--sec-accent, var(--navy));
+  box-shadow:0 4px 14px rgba(10,37,64,.22);
+}
+.section-tag::before{content:"";width:7px;height:7px;border-radius:50%;background:#fff;display:inline-block;opacity:.95}
+.section-head{max-width:720px;margin-bottom:28px}
+.section-head h2{font-size:clamp(26px,3.4vw,38px);font-weight:800;color:var(--navy);letter-spacing:-.02em;margin-bottom:14px}
+.section-head p{color:var(--sub);font-size:16.5px}
+.bg-soft{background:var(--bg-soft)}
+
+/* ---- Section identities: divider + accent + tint ---- */
+section::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:5px;
+  background:var(--sec-accent, transparent);
+}
+
+#technology{
+  --sec-accent:#0b63ce;
+  background:
+    radial-gradient(900px 480px at 100% 0%, rgba(11,99,206,.13), transparent 55%),
+    radial-gradient(700px 400px at 0% 100%, rgba(11,99,206,.06), transparent 60%),
+    #eef4fc;
+}
+#exhibition{
+  --sec-accent:#00c2a8;
+  background:
+    radial-gradient(900px 480px at 0% 0%, rgba(0,194,168,.08), transparent 55%),
+    #ffffff;
+}
+#contact{
+  --sec-accent:#0a2540;
+  background:
+    radial-gradient(800px 420px at 100% 100%, rgba(10,37,64,.06), transparent 55%),
+    var(--bg-soft);
+}
+
+/* ---------- Header ---------- */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  background:var(--navy);
+  border-bottom:1px solid transparent;
+  transition:border-color .25s ease, box-shadow .25s ease;
+}
+header.scrolled{border-bottom-color:rgba(255,255,255,.1);box-shadow:0 2px 20px rgba(0,0,0,.2)}
+.nav-wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;color:#fff}
+.brand .logo-img{
+  height:30px;width:auto;max-width:170px;display:block;
+  background:#fff;border-radius:8px;padding:5px 10px;
+}
+nav.menu{display:flex;gap:36px}
+nav.menu a{font-size:15px;font-weight:600;color:#fff;opacity:.75;transition:opacity .2s,color .2s;position:relative}
+nav.menu a:hover{opacity:1;color:var(--blue-light)}
+.nav-cta{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--blue);color:#fff;padding:11px 20px;border-radius:999px;
+  font-size:14px;font-weight:700;transition:background .2s,transform .2s;
+}
+.nav-cta:hover{background:var(--blue-light);transform:translateY(-1px)}
+.nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:0;padding:6px}
+.nav-toggle span{width:24px;height:2px;background:#fff;display:block}
+
+/* ---------- About (Hero) : matches Core Technology styling ---------- */
+#home{
+  position:relative;overflow:hidden;padding-bottom:40px;
+  background:
+    radial-gradient(680px 420px at 88% -10%, rgba(11,99,206,.14), transparent 60%),
+    radial-gradient(520px 360px at -5% 105%, rgba(0,194,168,.10), transparent 60%),
+    var(--bg-soft);
+}
+.about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:end}
+.about-grid > div:first-child{min-width:0}
+.about-grid .section-head h2{font-size:clamp(24px,2.8vw,32px)}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 20px;border-radius:999px;font-weight:700;font-size:13.5px;
+  transition:transform .2s,box-shadow .2s,background .2s;
+}
+.btn-primary{background:linear-gradient(90deg,var(--blue),var(--blue-light));color:#fff;box-shadow:0 10px 30px rgba(11,99,206,.25)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(11,99,206,.35)}
+.btn-ghost{background:#fff;color:var(--navy);border:1px solid var(--line)}
+.btn-ghost:hover{background:var(--blue-pale);border-color:var(--blue)}
+.hero-stats{display:flex;gap:0;flex-wrap:nowrap;border-top:1px solid var(--line);padding-top:14px}
+.hero-stats .stat{padding-right:18px;margin-right:18px;border-right:1px solid var(--line);flex-shrink:0}
+.hero-stats .stat:last-child{border-right:none;margin-right:0;padding-right:0}
+.hero-stats .stat b{display:block;font-size:20px;color:var(--blue);font-weight:800;line-height:1.2}
+.hero-stats .stat span{font-size:11px;color:var(--sub);white-space:nowrap}
+
+/* Hero visual: layered data card mock (light card style) */
+.hero-visual{
+  position:relative;min-height:300px;margin-bottom:38px;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:16px;
+}
+.ring{
+  position:absolute;top:50%;left:50%;width:280px;height:280px;
+  transform:translate(-50%,-50%);
+  border-radius:50%;border:1px dashed var(--line);
+  animation:spin 26s linear infinite;
+}
+.ring::before{
+  content:"";position:absolute;width:8px;height:8px;border-radius:50%;
+  background:var(--accent);top:-4px;left:50%;box-shadow:0 0 16px 3px rgba(0,194,168,.5);
+}
+.orbit-card{
+  position:relative;background:#fff;
+  border:1px solid var(--line);
+  border-radius:14px;
+  box-shadow:var(--shadow);
+  padding:16px;color:var(--ink);z-index:1;
+}
+.card-main{
+  width:78%;
+  animation:float1 7s ease-in-out infinite;
+}
+.card-main .chip{font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--blue);text-transform:uppercase;margin-bottom:10px}
+.bars{display:flex;align-items:flex-end;gap:6px;height:78px;margin-top:10px}
+.bars i{flex:1;background:linear-gradient(180deg,#5fb8ff,#0b63ce);border-radius:5px 5px 2px 2px;display:block}
+.card-mini{
+  width:64%;
+  animation:float2 6s ease-in-out infinite;
+}
+.card-mini .row{display:flex;justify-content:space-between;font-size:11px;color:var(--sub);margin-bottom:6px}
+.card-mini .val{color:var(--navy);font-weight:800;font-size:18px;margin-bottom:4px}
+@keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+
+/* ---------- Core tech : AI.BP ---------- */
+.aibp-domains{
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  margin-bottom:28px;padding:16px 20px;background:#fff;border:1px solid var(--line);border-radius:12px;
+}
+.aibp-domains-label{font-size:12.5px;font-weight:800;color:var(--sub);letter-spacing:.05em;text-transform:uppercase;flex-shrink:0}
+.aibp-domain-pills{display:flex;flex-wrap:wrap;gap:10px}
+.aibp-domain-pills span{
+  display:flex;flex-direction:column;gap:2px;
+  padding:8px 16px;border-radius:10px;background:var(--blue-pale);font-size:12.5px;color:var(--navy);
+  border-left:3px solid #d4af6e;
+}
+.aibp-domain-pills span b{font-size:13px;font-weight:800;color:var(--blue)}
+
+.aibp-stack{
+  position:relative;display:flex;flex-direction:column;gap:0;margin-bottom:40px;
+  background:#fff;border:1px solid var(--line);
+  border-radius:16px;padding:38px 34px 38px 58px;
+  box-shadow:var(--shadow);
+}
+.aibp-stack::before{
+  content:"";position:absolute;left:34px;top:60px;bottom:60px;width:2px;
+  background:linear-gradient(180deg, rgba(11,99,206,.85), rgba(212,175,110,.6));
+}
+.aibp-layer{
+  position:relative;display:grid;grid-template-columns:44px 1fr 210px;align-items:center;gap:22px;
+  padding:20px 0;border-bottom:1px solid var(--line);
+}
+.aibp-layer:last-child{border-bottom:none;padding-bottom:0}
+.aibp-layer:first-child{padding-top:0}
+.aibp-layer .ln{
+  position:relative;z-index:2;width:40px;height:40px;border-radius:50%;
+  font-weight:800;font-size:15px;font-family:Georgia,"Times New Roman",serif;
+  display:flex;align-items:center;justify-content:center;
+  background:#fff;border:2px solid #b8860b;color:#b8860b;
+  box-shadow:0 0 0 6px #fff;
+}
+.aibp-layer .lc h4{
+  font-size:16.5px;font-weight:800;margin-bottom:5px;color:var(--navy);
+  display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;letter-spacing:.01em;
+}
+.aibp-layer .lc h4 small{font-size:11.5px;font-weight:600;color:var(--sub);letter-spacing:.02em}
+.aibp-layer .lc p{font-size:13.5px;color:var(--ink);line-height:1.55}
+.aibp-layer .lt{
+  justify-self:end;padding:9px 18px;border-radius:3px;font-size:12.5px;font-weight:700;
+  text-align:center;white-space:nowrap;letter-spacing:.03em;
+  background:var(--blue-pale);border:1px solid #d9c48a;color:#8a6a1f;
+}
+.aibp-layer:hover .lt{background:#b8860b;border-color:#b8860b;color:#fff}
+.aibp-layer:hover .ln{background:#b8860b;color:#fff}
+.aibp-layer .ln,.aibp-layer .lt{transition:background .25s,color .25s,border-color .25s}
+
+.aibp-values{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.aibp-value{
+  position:relative;overflow:hidden;
+  background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px;
+  transition:transform .2s,box-shadow .2s;
+}
+.aibp-value::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--blue),var(--accent));
+}
+.aibp-value:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.aibp-value h5{font-size:14.5px;font-weight:800;color:var(--navy);margin-bottom:8px}
+.aibp-value p{font-size:13px;color:var(--sub)}
+
+/* ---------- AI.BP mini stats ---------- */
+.aibp-mini-stats{
+  margin-top:20px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;
+}
+.mstat{background:#fff;padding:18px 16px;text-align:center}
+.mstat b{display:block;font-size:24px;font-weight:800;color:var(--blue)}
+.mstat span{font-size:12.5px;color:var(--sub)}
+
+/* ---------- Projects / Exhibition ---------- */
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.proj-card{
+  display:block;border-radius:16px;overflow:hidden;border:1px solid var(--line);
+  transition:transform .25s,box-shadow .25s;background:#fff;cursor:pointer;
+}
+.proj-card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.proj-card:hover .play{background:#ff0000;border-color:#ff0000;transform:scale(1.08)}
+.proj-thumb{
+  height:150px;position:relative;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  color:#fff;font-size:13px;font-weight:700;letter-spacing:.04em;
+  background-size:cover;background-position:center;
+}
+.proj-thumb::before{content:"";position:absolute;inset:0;opacity:.55;transition:opacity .25s}
+.proj-card:hover .proj-thumb::before{opacity:.72}
+.proj-thumb span{position:relative;z-index:1;opacity:.9}
+.proj-thumb .play{
+  position:relative;z-index:1;width:44px;height:44px;border-radius:50%;
+  background:rgba(255,255,255,.18);border:1.5px solid rgba(255,255,255,.6);
+  display:flex;align-items:center;justify-content:center;margin-bottom:10px;
+  color:#fff;font-size:14px;transition:background .2s,border-color .2s,transform .2s;
+}
+.proj-body{padding:18px 20px}
+.proj-body .cat{font-size:11.5px;font-weight:700;color:var(--blue);letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px}
+.proj-body h4{font-size:15.5px;font-weight:700;color:var(--navy);line-height:1.4}
+
+.proj-list{margin-top:22px;border-top:1px solid var(--line)}
+.proj-list li{border-bottom:1px solid var(--line)}
+.proj-list a{
+  display:flex;align-items:center;gap:16px;padding:16px 6px;
+  transition:background .2s;
+}
+.proj-list a:hover{background:var(--bg-soft)}
+.proj-list a:hover .ttl{color:var(--blue)}
+.proj-list .cat{
+  flex-shrink:0;width:100px;font-size:11.5px;font-weight:700;color:var(--blue);
+  letter-spacing:.05em;text-transform:uppercase;
+}
+.proj-list .ttl{flex:1;font-size:14.5px;font-weight:600;color:var(--navy);transition:color .2s}
+.proj-list .arrow{flex-shrink:0;color:var(--sub);font-size:16px}
+@media (max-width:600px){
+  .proj-list a{flex-wrap:wrap;gap:4px}
+  .proj-list .cat{width:auto}
+}
+
+/* thumb gradient variety */
+.t1::before{background:linear-gradient(135deg,#1b4b91,#0a2540)}
+.t2::before{background:linear-gradient(135deg,#0a8f7a,#0a2540)}
+.t3::before{background:linear-gradient(135deg,#3d6bce,#0a2540)}
+.t4::before{background:linear-gradient(135deg,#2c7a8c,#0a2540)}
+.t5::before{background:linear-gradient(135deg,#3455a8,#0a2540)}
+.t6::before{background:linear-gradient(135deg,#0a7fae,#0a2540)}
+.t7::before{background:linear-gradient(135deg,#4a5fa8,#0a2540)}
+.t8::before{background:linear-gradient(135deg,#106e8c,#0a2540)}
+.t9::before{background:linear-gradient(135deg,#38548f,#0a2540)}
+
+/* ---------- History / Timeline ---------- */
+#history{
+  --sec-accent:#b8860b;
+  background:
+    radial-gradient(900px 480px at 100% 0%, rgba(212,175,110,.16), transparent 55%),
+    radial-gradient(700px 400px at 0% 100%, rgba(184,134,11,.07), transparent 60%),
+    #fbf6ea;
+}
+.hist-tabs{display:flex;gap:10px;margin-bottom:36px;flex-wrap:wrap}
+.hist-tab{
+  padding:10px 20px;border-radius:999px;border:1px solid var(--line);
+  font-weight:700;font-size:14px;color:var(--sub);cursor:pointer;background:#fff;
+  transition:all .2s;
+}
+.hist-tab.active,.hist-tab:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+.hist-panel{display:none}
+.hist-panel.active{display:block;animation:fadein .35s ease}
+@keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.timeline{position:relative;padding-left:28px;border-left:2px solid var(--line)}
+.timeline-item{position:relative;padding-bottom:20px}
+.timeline-item::before{
+  content:"";position:absolute;left:-34px;top:4px;width:11px;height:11px;border-radius:50%;
+  background:#b8860b;box-shadow:0 0 0 4px rgba(184,134,11,.15);
+}
+.timeline-item p{font-size:14.5px;color:var(--ink)}
+.timeline-item p b{color:var(--navy)}
+
+.patent-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.patent-item{
+  display:flex;gap:12px;padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:#fff;
+}
+.patent-item .badge{
+  flex-shrink:0;width:34px;height:34px;border-radius:9px;background:rgba(184,134,11,.12);color:#b8860b;
+  display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;
+}
+.patent-item .txt{font-size:14px;color:var(--ink)}
+.patent-item .txt .no{display:block;font-size:12px;color:var(--sub);margin-top:3px}
+
+.sw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.sw-card{border:1px solid var(--line);border-radius:14px;padding:22px;background:#fff}
+.sw-card h5{color:var(--navy);font-weight:800;font-size:15.5px;margin-bottom:6px}
+.sw-card p{font-size:13.5px;color:var(--sub)}
+
+.area-intro{font-size:15.5px;font-weight:700;color:var(--navy);margin-bottom:18px}
+.area-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.area-item{
+  display:flex;gap:12px;align-items:flex-start;padding:18px;border-radius:12px;
+  background:#fff;border:1px solid var(--line);
+}
+.area-item .chk{
+  flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;margin-top:1px;
+}
+.area-item span:last-child{display:flex;flex-direction:column;gap:4px;font-size:13.5px;font-weight:500;color:var(--sub);line-height:1.5}
+.area-item span:last-child b{font-size:14.5px;font-weight:800;color:var(--navy)}
+
+/* ---------- Contact ---------- */
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.info-card{
+  background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px;
+  display:flex;gap:16px;align-items:flex-start;
+}
+.info-card .ico{
+  width:44px;height:44px;border-radius:10px;background:var(--blue-pale);color:var(--blue);
+  display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;
+}
+.info-card h4{font-size:15px;font-weight:800;color:var(--navy);margin-bottom:6px}
+.info-card p{font-size:14px;color:var(--sub)}
+.info-card a{color:var(--blue);font-weight:600}
+.contact-cards{display:flex;flex-direction:column;gap:16px}
+.map-box{
+  border-radius:16px;overflow:hidden;border:1px solid var(--line);min-height:260px;
+  background:linear-gradient(135deg,var(--navy),#123a63);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;padding:30px;
+}
+.map-box .pin{font-size:34px;margin-bottom:12px}
+.map-box b{font-size:16px}
+.map-box span{font-size:13.5px;color:#b9c8de;margin-top:6px}
+
+.consult-form{
+  margin-top:28px;background:#fff;border:1px solid var(--line);border-radius:16px;
+  padding:30px;box-shadow:var(--shadow);
+}
+.consult-head{margin-bottom:20px}
+.consult-head h3{font-size:19px;font-weight:800;color:var(--navy);margin-bottom:6px}
+.consult-head p{font-size:14px;color:var(--sub)}
+.consult-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:16px}
+.consult-form .field{margin-bottom:16px}
+.consult-form .field:last-of-type{margin-bottom:20px}
+.consult-grid .field{margin-bottom:0}
+.consult-form label{display:block;font-size:13.5px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.consult-form label .req{color:#e04b4b}
+.consult-form input,.consult-form select,.consult-form textarea{
+  width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;
+  font-size:14px;font-family:inherit;color:var(--ink);background:#fff;
+  transition:border-color .2s,box-shadow .2s;
+}
+.consult-form input:focus,.consult-form select:focus,.consult-form textarea:focus{
+  outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(11,99,206,.12);
+}
+.consult-form textarea{resize:vertical}
+.consult-submit{width:100%;justify-content:center;border:none;cursor:pointer;font-size:15px;padding:13px 20px}
+.consult-submit:disabled{opacity:.6;cursor:not-allowed}
+.consult-status{margin-top:14px;text-align:center;font-size:13.5px;font-weight:600;min-height:0}
+.consult-status.ok{color:#0a8f5c}
+.consult-status.err{color:#d1453b}
+@media (max-width:600px){
+  .consult-grid{grid-template-columns:1fr}
+}
+
+/* ---------- Footer ---------- */
+footer{background:var(--navy);color:#c3d2e8;padding:56px 0 24px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-brand{display:flex;align-items:center;gap:10px;color:#fff;font-weight:800;font-size:18px;margin-bottom:14px}
+.footer-logo-img{
+  height:36px;width:auto;max-width:190px;display:block;
+  background:#fff;border-radius:8px;padding:6px 12px;
+}
+.footer-col h5{color:#fff;font-size:14px;font-weight:700;margin-bottom:16px}
+.footer-col ul li{margin-bottom:10px;font-size:14px}
+.footer-col ul li a:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:22px;font-size:13px;color:#7f92ac;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+/* ---------- Back to top ---------- */
+.top-btn{
+  position:fixed;right:24px;bottom:24px;width:46px;height:46px;border-radius:50%;
+  background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;
+  box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;z-index:900;
+  border:none;cursor:pointer;font-size:18px;
+}
+.top-btn.show{opacity:1;pointer-events:auto}
+.top-btn:hover{transform:translateY(-3px)}
+
+/* ---------- Responsive ---------- */
+@media (max-width:960px){
+  nav.menu{display:none}
+  .nav-toggle{display:flex}
+  .about-grid{grid-template-columns:1fr}
+  .hero-visual{min-height:220px;order:-1}
+  .proj-grid{grid-template-columns:repeat(2,1fr)}
+  .patent-grid{grid-template-columns:1fr}
+  .sw-grid{grid-template-columns:1fr}
+  .area-grid{grid-template-columns:1fr}
+  .contact-wrap{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr;gap:26px}
+  .aibp-values{grid-template-columns:repeat(2,1fr)}
+  .aibp-stack{padding:32px 22px 32px 46px}
+  .aibp-stack::before{left:22px}
+  .aibp-layer{grid-template-columns:36px 1fr;grid-template-areas:"ln lc" "lt lt";row-gap:10px}
+  .aibp-layer .ln{grid-area:ln;width:34px;height:34px;font-size:13px}
+  .aibp-layer .lc{grid-area:lc}
+  .aibp-layer .lt{grid-area:lt;justify-self:start;margin-top:2px}
+}
+@media (max-width:600px){
+  section{padding:64px 0}
+  .proj-grid{grid-template-columns:1fr}
+  .aibp-values{grid-template-columns:1fr}
+  .aibp-domains{flex-direction:column;align-items:flex-start}
+  .aibp-mini-stats{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="container nav-wrap">
+    <a href="#home" class="brand">
+      <img src="logo3.png" alt="BigData Labs" class="logo-img">
+    </a>
+    <nav class="menu" id="menu">
+      <a href="#home">About</a>
+      <a href="#technology">기술력</a>
+      <a href="#exhibition">프로젝트</a>
+      <a href="#history">History</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="nav-cta">문의하기</a>
+    <button class="nav-toggle" id="navToggle" aria-label="메뉴"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ================= ABOUT (first screen) ================= -->
+<section id="home">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <div class="section-head" style="margin-bottom:24px">
+          <span class="section-tag">About Us</span>
+          <h2>데이터가 살아 숨쉬는 세상,<br>빅데이터 &amp; AI로 실현합니다</h2>
+          <p>㈜빅데이터랩스는 지난 15년간 다양한 빅데이터·AI 연구개발 프로젝트를 통해 축적한 기술을 바탕으로 설립된 충북대 교원벤처입니다. 빅데이터 및 AI 플랫폼인 <b>AI.BP</b> 플랫폼을 사용하여 다양한 산업의 AX를 지원하고 있습니다. IoT 빅데이터 실시간 수집과 관리, 다양한 AI 모델 개발과 운용, 생성형 AI 및 Agentic AI를 활용하여 차별화된 서비스를 제공합니다.</p>
+        </div>
+        <div class="hero-actions">
+          <a href="#technology" class="btn btn-primary">기술력 살펴보기 →</a>
+          <a href="#history" class="btn btn-ghost">연구실적 보기</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><b>100편+</b><span>빅데이터 &amp; AI 논문</span></div>
+          <div class="stat"><b>20+</b><span>주요 연구·구축 프로젝트</span></div>
+          <div class="stat"><b>10건+</b><span>지적재산권</span></div>
+          <div class="stat"><b>10종+</b><span>자체 개발 솔루션</span></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="ring"></div>
+        <div class="orbit-card card-mini">
+          <div class="row"><span>설비 건강지수</span><span>●Live</span></div>
+          <div class="val">92.4</div>
+          <div class="row"><span>이상 확률</span><span style="color:#00e0c3">0.8%</span></div>
+        </div>
+        <div class="orbit-card card-main">
+          <div class="chip">Real-time Analytics</div>
+          <div class="bars">
+            <i style="height:35%"></i><i style="height:60%"></i><i style="height:45%"></i>
+            <i style="height:82%"></i><i style="height:55%"></i><i style="height:70%"></i>
+            <i style="height:40%"></i><i style="height:90%"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CORE TECHNOLOGY : AI.BP ================= -->
+<section id="technology" style="padding-top:40px">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-tag">Core Technology</span>
+      <h2>Bigdatalabs AI Platform : AI.BP</h2>
+      <p>산업 현장 IoT 데이터를 수집하여 AI 기반 예측과 의사결정을 지원하는 ㈜빅데이터랩스의 산업용 AI 플랫폼입니다.</p>
+    </div>
+
+    <div class="aibp-domains">
+      <span class="aibp-domains-label">활용 분야</span>
+      <div class="aibp-domain-pills">
+        <span><b>Smart Factory</b>설비 예지보전·품질예측</span>
+        <span><b>Smart Healthcare</b>스마트 헬스케어</span>
+        <span><b>Smart Farm</b>스마트팜 생육예측</span>
+        <span><b>Smart Energy</b>에너지 최적화</span>
+        <span><b>ESG / SDGs</b>탄소·환경 모니터링</span>
+      </div>
+    </div>
+
+    <div class="aibp-stack">
+      <div class="aibp-layer l5">
+        <div class="ln">5</div>
+        <div class="lc">
+          <h4>Agentic AI <small>Multi-Agent · Planner · Diagnosis/Decision Agent</small></h4>
+          <p>자율적 계획·추론·의사결정·실행을 수행하는 AI Agent 프레임워크</p>
+        </div>
+        <div class="lt">AI Agents in Action</div>
+      </div>
+      <div class="aibp-layer l4">
+        <div class="ln">4</div>
+        <div class="lc">
+          <h4>Industrial LLM <small>GraphRAG · Knowledge Graph · Report Gen</small></h4>
+          <p>산업 특화 LLM, 지식 그래프 기반의 검색·분석·보고 자동화</p>
+        </div>
+        <div class="lt">Knowledge to Insight</div>
+      </div>
+      <div class="aibp-layer l3">
+        <div class="ln">3</div>
+        <div class="lc">
+          <h4>AI Model <small>Machine/Deep Learning · Transformer</small></h4>
+          <p>시계열 데이터 예측·이상탐지·최적화를 위한 AI 모델 &amp; 알고리즘</p>
+        </div>
+        <div class="lt">Forecast to Optimize</div>
+      </div>
+      <div class="aibp-layer l2">
+        <div class="ln">2</div>
+        <div class="lc">
+          <h4>Data Product <small>Dataset Registry · Feature Store · Data Quality</small></h4>
+          <p>신뢰할 수 있는 데이터 자산 관리 및 데이터 품질·특성·버전 관리</p>
+        </div>
+        <div class="lt">Trusted Data Foundation</div>
+      </div>
+      <div class="aibp-layer l1">
+        <div class="ln">1</div>
+        <div class="lc">
+          <h4>Data Extraction <small>MQTT · OPC-UA · PLC · SCADA · Kafka …</small></h4>
+          <p>현장 장비·센서·시스템 연결 및 데이터 수집·전달·메시징</p>
+        </div>
+        <div class="lt">Connect Everything</div>
+      </div>
+    </div>
+
+    <div class="aibp-values">
+      <div class="aibp-value">
+        <h5>데이터 기반 의사결정 가속화</h5>
+        <p>산업 데이터의 실시간 수집·분석으로 신속정확한 의사결정 지원</p>
+      </div>
+      <div class="aibp-value">
+        <h5>AI 기술 통합 제공</h5>
+        <p>ML/DL부터 LLM, Agentic AI까지 하나의 플랫폼에서 통합 활용</p>
+      </div>
+      <div class="aibp-value">
+        <h5>산업별 빠른 구축</h5>
+        <p>표준화된 모듈과 템플릿으로 다양한 산업의 응용들을 신속히 구축</p>
+      </div>
+      <div class="aibp-value">
+        <h5>비용 효율성 극대화</h5>
+        <p>재사용 가능한 플랫폼 구조로 개발/운영 비용 절감</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EXHIBITION / PROJECTS ================= -->
+<section id="exhibition">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-tag">Exhibition</span>
+      <h2>빅데이터 &amp; AI로 해결한 산업 현장의 문제들</h2>
+      <p>당사는 빅데이터 &amp; AI 기술로 산업 현장의 다양한 문제를 해결하고 있습니다.</p>
+    </div>
+    <div class="proj-grid">
+      <a class="proj-card" href="https://youtu.be/Bl7Nng1wDSg?si=6Nep2xUAQHqe9kvG" target="_blank" rel="noopener">
+        <div class="proj-thumb t1" style="background-image:url('https://img.youtube.com/vi/Bl7Nng1wDSg/hqdefault.jpg')"><div class="play">▶</div><span>YouTube에서 보기</span></div>
+        <div class="proj-body"><div class="cat">스마트 제조</div><h4>R2R공정 불량 사전예측 AI모델</h4></div>
+      </a>
+      <a class="proj-card" href="https://youtu.be/DCZyO5JaLcw?si=IqgTOMXjFM9tfqna" target="_blank" rel="noopener">
+        <div class="proj-thumb t2" style="background-image:url('https://img.youtube.com/vi/DCZyO5JaLcw/hqdefault.jpg')"><div class="play">▶</div><span>YouTube에서 보기</span></div>
+        <div class="proj-body"><div class="cat">지속가능발전</div><h4>SDGs/ESG/안전보건경영 데이터 수집과 관리 솔루션</h4></div>
+      </a>
+      <a class="proj-card" href="https://youtu.be/Hyv6hNMJJYQ" target="_blank" rel="noopener">
+        <div class="proj-thumb t3" style="background-image:url('https://img.youtube.com/vi/Hyv6hNMJJYQ/hqdefault.jpg')"><div class="play">▶</div><span>YouTube에서 보기</span></div>
+        <div class="proj-body"><div class="cat">스마트 안전</div><h4>스마트 안전 솔루션</h4></div>
+      </a>
+    </div>
+    <ul class="proj-list">
+      <li><a href="chatbot.pdf" target="_blank" rel="noopener"><span class="cat">외국인지원</span><span class="ttl">외국인 유학생/근로자 챗봇</span><i class="arrow">↗</i></a></li>
+      <li><a href="https://youtu.be/DCZyO5JaLcw" target="_blank" rel="noopener"><span class="cat">ESG/SDGs</span><span class="ttl">AI활용 SDGs/ESG 솔루션</span><i class="arrow">↗</i></a></li>
+      <li><a href="AI.BP Smart Factory 응용사례.pdf" target="_blank" rel="noopener"><span class="cat">스마트 제조</span><span class="ttl">AI.BP 활용 다양한 제조분야 AX 실현사례</span><i class="arrow">↗</i></a></li>
+      <li><a href="스마트팜 AI 홍보자료.pdf" target="_blank" rel="noopener"><span class="cat">스마트팜</span><span class="ttl">생육데이터 기반 생산량 예측과 Vision AI 응용사례</span><i class="arrow">↗</i></a></li>
+      <li><a href="Vision AI 제품 홍보자료.pdf" target="_blank" rel="noopener"><span class="cat">Vision AI</span><span class="ttl">동일이미지 판별 및 이물질 탐지 Vision AI</span><i class="arrow">↗</i></a></li>
+      <li><a href="https://youtu.be/S4u_3el78I0" target="_blank" rel="noopener"><span class="cat">교통</span><span class="ttl">청주시 교통빅데이터 분석 시스템 구축</span><i class="arrow">↗</i></a></li>
+      <li><a href="https://youtu.be/ka4mM6vgbZQ" target="_blank" rel="noopener"><span class="cat">보건의료</span><span class="ttl">보건의료 빅데이터 연계플랫폼 구축</span><i class="arrow">↗</i></a></li>
+      <li><a href="https://youtu.be/Bo5KArqurg4" target="_blank" rel="noopener"><span class="cat">에너지</span><span class="ttl">서울 K대학교 전력 빅데이터 실시간 수집 및 분석 시스템</span><i class="arrow">↗</i></a></li>
+      <li><a href="https://youtu.be/QKP6LwMAiUQ" target="_blank" rel="noopener"><span class="cat">스마트 제조</span><span class="ttl">제조현장 설비 센서 빅데이터 분석·모니터링·예측</span><i class="arrow">↗</i></a></li>
+      <li><a href="https://youtu.be/BFO1Rgu6OpA" target="_blank" rel="noopener"><span class="cat">스마트 팩토리</span><span class="ttl">스마트 공장(자동차 부품) 생산정보 불량 예측 모델링(의사결정트리)</span><i class="arrow">↗</i></a></li>
+      <li><a href="https://youtu.be/HtSeS1Ars1s" target="_blank" rel="noopener"><span class="cat">품질관리</span><span class="ttl">공정 빅데이터 분석을 통한 품질 영향 인자분석</span><i class="arrow">↗</i></a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= HISTORY ================= -->
+<section id="history">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-tag">History &amp; Achievements</span>
+      <h2>창업 이전부터 이어온 빅데이터·AI 연구개발</h2>
+      <p>당사는 창업 이전 2010년부터 대학에서 다양한 분야에서 데이터베이스/빅데이터/AI 연구개발을 수행해 왔습니다.</p>
+    </div>
+
+    <div class="hist-tabs">
+      <div class="hist-tab active" data-tab="research">주요 연구결과</div>
+      <div class="hist-tab" data-tab="patent">특허</div>
+      <div class="hist-tab" data-tab="area">주요 업무분야</div>
+    </div>
+
+    <!-- 연구결과 -->
+    <div class="hist-panel active" id="panel-research">
+      <div class="timeline">
+        <div class="timeline-item"><p><b>2026</b> 경량Transformer·XAI 기반 이차전지 R2R 공정 파단 사전예측 시스템 (중기부)</p></div>
+        <div class="timeline-item"><p><b>2026~2028</b> AI 기반 다중 모달 시계열 주입량 예측 및 실시간 자동제어 통증관리 플랫폼 개발 (우영메디칼, 중기부)</p></div>
+        <div class="timeline-item"><p><b>2025~2026</b> Transformer 기반의 AI 비전을 이용한 한우고기의 포장 전/후 자동매칭 및 이물질 탐지 통합 시스템 개발 및 실증 (충북테크노파크)</p></div>
+        <div class="timeline-item"><p><b>2025</b> 이미지를 이용한 피플카운팅 시스템 (비전AI)</p></div>
+        <div class="timeline-item"><p><b>2025</b> 생성형AI 활용 MPTC업무처리용 AI Agent 시스템 구축 및 검증 (에이아이웍스)</p></div>
+        <div class="timeline-item"><p><b>2024~2025</b> 스마트 온실용 센서노드 및 생산관리시스템 (AI 모델) 개발 (다부처사업)</p></div>
+        <div class="timeline-item"><p><b>2022~2023</b> 스마트 PCA 자가통증제어기 약물주입량 예측 AI모형 개발 (우영메디컬)</p></div>
+        <div class="timeline-item"><p><b>2023~2024</b> 스마트 재활기기 운동량 추천 AI모형 개발 (창명제어기술)</p></div>
+        <div class="timeline-item"><p><b>2022~2023</b> AI 활용 참외 출하량 예측 (경북 S지자체 &amp; 농협)</p></div>
+        <div class="timeline-item"><p><b>2019~2022</b> 전자부품 제조기업 지능형 스마트 팩토리 플랫폼 개발 (유럽국제공동연구)</p></div>
+        <div class="timeline-item"><p><b>2021~2025</b> 수입식품안전 빅데이터융복합 플랫폼 구축 (식약처 R&amp;D사업)</p></div>
+        <div class="timeline-item"><p><b>2019~2021</b> 블록체인 기반 투표 시스템 개발 및 운용 (충북대 총학생회 투표)</p></div>
+        <div class="timeline-item"><p><b>2021~2022</b> 빅데이터 플랫폼 서비스 제공 (힐링소프트)</p></div>
+        <div class="timeline-item"><p><b>2018~2021</b> 스마트 공장 빅데이터 플랫폼 구축 (산자부-부산시-ETRI, 충주 SH사, 청주 EG사 등)</p></div>
+        <div class="timeline-item"><p><b>2016~2017</b> 보건의료빅데이터 연계플랫폼 구축 (보건복지부 R&amp;R사업)</p></div>
+        <div class="timeline-item"><p><b>2014~2015</b> 청주시 교통빅데이터 분석 시스템 (청주시청)</p></div>
+        <div class="timeline-item"><p>충청북도 온라인 관광데이터 분석 시스템 구축 (충청북도)</p></div>
+        <div class="timeline-item"><p>시흥경찰서 스마트 안전 빅데이터 분석 (시흥경찰서)</p></div>
+        <div class="timeline-item"><p>수원시 어린이 교통사고 빅데이터 분석 (수원시청)</p></div>
+      </div>
+    </div>
+
+    <!-- 특허 -->
+    <div class="hist-panel" id="panel-patent">
+      <div class="patent-grid">
+        <div class="patent-item"><div class="badge">P</div><div class="txt">XAI를 활용한 제조설비 이상발생확률 예측 방법 및 설비 건강지수 도출 시스템<span class="no">등록번호 10-2483210-B1 · 2022</span></div></div>
+        <div class="patent-item"><div class="badge">P</div><div class="txt">반도체 클린룸 환경 최적화를 위한 머신러닝 기반 클린룸 이상탐지 및 관리시스템<span class="no">출원심사중 · 2022</span></div></div>
+        <div class="patent-item"><div class="badge">P</div><div class="txt">머신러닝 기반 클린룸 관리 시스템 및 방법<span class="no">출원번호 10-2022-0164976 · 2022</span></div></div>
+        <div class="patent-item"><div class="badge">P</div><div class="txt">회사정보검증 시스템<span class="no">출원번호 10-2021-0168897 · 2021</span></div></div>
+        <div class="patent-item"><div class="badge">P</div><div class="txt">마이데이터 기반의 학생 건강관리 방법 및 장치<span class="no">출원번호 10-2021-0113541 · 2021</span></div></div>
+        <div class="patent-item"><div class="badge">P</div><div class="txt">개인데이터 기반의 노인 건강관리 방법 및 시스템<span class="no">출원번호 10-2021-0170353 · 2021</span></div></div>
+        <div class="patent-item"><div class="badge">P</div><div class="txt">MQTT와 KAFKA를 이용한 IoT 센서 시뮬레이션 시스템<span class="no">등록번호 KR101834837B1 · 2018</span></div></div>
+      </div>
+    </div>
+
+    <!-- 주요 업무분야 -->
+    <div class="hist-panel" id="panel-area">
+      <p class="area-intro">대규모 실시간 IoT 빅데이터 플랫폼 AI.BP(AI Bigdatalabs Platform)를 활용한 다양한 서비스 구축</p>
+      <div class="area-grid">
+        <div class="area-item"><span class="chk">✓</span><span><b>스마트 제조</b>생산현장의 빅데이터 수집과 분석 및 예측을 통한 예지정비 및 불량방지</span></div>
+        <div class="area-item"><span class="chk">✓</span><span><b>스마트 의료 AI 플랫폼</b>의료 빅데이터 통합, AI 진단·예측 모델 개발 및 임상 의사결정 지원</span></div>
+        <div class="area-item"><span class="chk">✓</span><span><b>스마트팜 AI 플랫폼</b>농업환경 데이터 기반 생육 예측, 생산성 향상 및 에너지 최적화</span></div>
+        <div class="area-item"><span class="chk">✓</span><span><b>ViT 기반 Vision AI</b>이미지·영상 분석, 객체 인식, 이상 탐지 및 산업·의료 분야 비전 AI</span></div>
+        <div class="area-item"><span class="chk">✓</span><span><b>생성형 AI·RAG·AI Agent·XAI</b>생성형 AI와 설명가능 AI(XAI)를 결합한 신뢰성 높은 지능형 서비스</span></div>
+        <div class="area-item"><span class="chk">✓</span><span><b>ESG·SDGs 솔루션</b>ESG·SDGs 데이터 자동 수집, 성과 분석, 지표 관리 및 보고서 자동 생성</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="bg-soft">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-tag">Contact Us</span>
+      <h2>궁금하신 사항은 언제든 문의해 주세요</h2>
+    </div>
+    <div class="contact-wrap">
+      <div class="contact-cards">
+        <div class="info-card">
+          <div class="ico">📍</div>
+          <div>
+            <h4>Address</h4>
+            <p>㈜빅데이터랩스 (우. 28637)<br>충청북도 청주시 서원구 신화로36번길 32 (성화동, 제누스타) 402호</p>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="ico">☎️</div>
+          <div>
+            <h4>Info</h4>
+            <p>043-261-3258<br>wscho@cbnu.ac.kr<br><a href="http://www.bigdatalabs.kr/" target="_blank" rel="noopener">www.bigdatalabs.kr</a></p>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="ico">💬</div>
+          <div>
+            <h4>Kakao Channel</h4>
+            <p>궁금하신 사항은 카카오톡 채널로도 편하게 문의주세요.</p>
+          </div>
+        </div>
+      </div>
+      <div class="map-box">
+        <img src="map.png" alt="㈜빅데이터랩스 위치 지도" style="width:100%;height:100%;object-fit:cover;border-radius:16px">
+      </div>
+    </div>
+
+    <form id="consult-form" class="consult-form">
+      <div class="consult-head">
+        <h3>문의하기</h3>
+        <p>AI.BP 플랫폼, 공동연구, 기타 문의를 남겨주시면 담당자가 확인 후 이메일로 회신드립니다.</p>
+      </div>
+      <div class="consult-grid">
+        <div class="field">
+          <label for="c-name">이름 <span class="req">*</span></label>
+          <input required id="c-name" name="name" type="text" placeholder="홍길동">
+        </div>
+        <div class="field">
+          <label for="c-phone">연락처 <span class="req">*</span></label>
+          <input required id="c-phone" name="phone" type="tel" placeholder="010-0000-0000">
+        </div>
+        <div class="field">
+          <label for="c-email">이메일</label>
+          <input id="c-email" name="email" type="email" placeholder="example@email.com">
+        </div>
+        <div class="field">
+          <label for="c-type">문의 유형 <span class="req">*</span></label>
+          <select required id="c-type" name="inquiry_type">
+            <option value="">선택해주세요</option>
+            <option value="AI.BP 플랫폼 문의">AI.BP 플랫폼 문의</option>
+            <option value="공동연구/R&amp;D 문의">공동연구/R&amp;D 문의</option>
+            <option value="기타 문의">기타 문의</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="c-message">문의 내용</label>
+        <textarea id="c-message" name="message" rows="4" placeholder="문의하실 내용을 입력해주세요"></textarea>
+      </div>
+      <button type="submit" id="consult-submit" class="btn btn-primary consult-submit">문의 보내기</button>
+      <p id="consult-status" class="consult-status"></p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <img src="logo3.png" alt="BigData Labs" class="footer-logo-img">
+        </div>
+        <p style="font-size:14px;max-width:360px;color:#9fb0c9">급증하는 빅데이터를 수집, 저장관리, 분석활용하고, 데이터 관리체계 전반을 지원하여 누구나 필요한 데이터(정보)를 적시에 제공받는 데이터가 살아 숨쉬는 세상을 실현합니다.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="#home">About Us</a></li>
+          <li><a href="#technology">Technology</a></li>
+          <li><a href="#exhibition">Exhibition</a></li>
+          <li><a href="#history">History</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li>충청북도 청주시 서원구 신화로36번길 32</li>
+          <li>제누스타 402호</li>
+          <li>Tel: 043-261-3258</li>
+          <li>Email: wscho@cbnu.ac.kr</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© BigData Labs Inc. All Rights Reserved.</span>
+      <span>충북대학교 교원벤처</span>
+    </div>
+  </div>
+</footer>
+
+<button class="top-btn" id="topBtn" aria-label="맨 위로">↑</button>
+
+<script>
+// header scroll style
+const header = document.getElementById('siteHeader');
+const topBtn = document.getElementById('topBtn');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 20);
+  topBtn.classList.toggle('show', window.scrollY > 500);
+});
+topBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+// mobile nav toggle
+const navToggle = document.getElementById('navToggle');
+const menu = document.getElementById('menu');
+navToggle.addEventListener('click', () => {
+  const open = menu.style.display === 'flex';
+  menu.style.display = open ? 'none' : 'flex';
+  menu.style.flexDirection = 'column';
+  menu.style.position = 'absolute';
+  menu.style.top = '76px';
+  menu.style.left = '0';
+  menu.style.right = '0';
+  menu.style.background = 'var(--navy)';
+  menu.style.padding = '18px 24px';
+  menu.style.gap = '16px';
+  menu.style.borderBottom = '1px solid rgba(255,255,255,.1)';
+});
+menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  if (window.innerWidth <= 960) menu.style.display = 'none';
+}));
+
+// history tabs
+const tabs = document.querySelectorAll('.hist-tab');
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.hist-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+  });
+});
+
+// consult form
+const consultForm = document.getElementById('consult-form');
+const consultStatus = document.getElementById('consult-status');
+const consultSubmit = document.getElementById('consult-submit');
+
+consultForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  consultSubmit.disabled = true;
+  consultSubmit.textContent = '전송 중...';
+  consultStatus.textContent = '';
+  consultStatus.className = 'consult-status';
+
+  const payload = {
+    name: document.getElementById('c-name').value.trim(),
+    phone: document.getElementById('c-phone').value.trim(),
+    email: document.getElementById('c-email').value.trim(),
+    inquiry_type: document.getElementById('c-type').value,
+    message: document.getElementById('c-message').value.trim(),
+  };
+
+  try {
+    const res = await fetch('/api/consult', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    const data = await res.json();
+
+    if (!res.ok || !data.success) {
+      throw new Error(data.message || '전송에 실패했습니다.');
+    }
+
+    consultStatus.textContent = '문의가 접수되었습니다. 감사합니다.';
+    consultStatus.className = 'consult-status ok';
+    consultForm.reset();
+  } catch (err) {
+    consultStatus.textContent = err.message || '오류가 발생했습니다. 잠시 후 다시 시도해주세요.';
+    consultStatus.className = 'consult-status err';
+  } finally {
+    consultSubmit.disabled = false;
+    consultSubmit.textContent = '문의 보내기';
+  }
+});
+</script>
+
+</body>
+</html>
